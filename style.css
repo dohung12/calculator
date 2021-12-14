@@ -21,6 +21,8 @@
 .display {
   grid-area: display;
   background-color: #eee;
+  text-align: right;
+  font-size: 64px;
 }
 
 .misc-pad {
