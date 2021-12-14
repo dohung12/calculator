@@ -6,8 +6,10 @@ const display = document.querySelector(".display");
 const clrBtn = document.querySelector(".clear-btn");
 const equalBtn = document.querySelector(".equals-btn");
 const rmvLastBtn = document.querySelector(".rmv-last-btn");
+const displayLastCalc = document.querySelector(".last-operation");
 
 let displayStr = "";
+
 // control displaying, if previous clicked button is
 // a operator, clear screen to display new number
 let oprFlag = false;
@@ -37,7 +39,7 @@ function keydownHandler(e) {
     submitNumber(keyPressed);
   } else if (keyPressed in funcName) {
     submitFunction(funcName[keyPressed]);
-  } else if (keyPressed === "=") {
+  } else if (keyPressed === "=" || keyPressed === "Enter") {
     equalBtnEvent();
   }
 }
@@ -61,6 +63,7 @@ function submitFunction(val) {
   }
 
   if (opr !== "") {
+    displayLastCalcFunc(opr, num1, num2, false);
     num1 = window[opr](num1, num2);
     opr = "";
     clearDisplay();
@@ -75,12 +78,26 @@ function equalBtnEvent() {
   num2 = parseFloat(displayStr);
   oprFlag = true;
 
+  displayLastCalcFunc(opr, num1, num2, false);
   result = window[opr](num1, num2);
   num1 = undefined;
   num2 = "";
   opr = "";
   clearDisplay();
   displayScreen(result);
+}
+
+function displayLastCalcFunc(opr, num1, num2, reset) {
+  let localStr = "";
+
+  if (reset) {
+    displayLastCalc.textContent = localStr;
+  } else {
+    const funcName = { plus: "+", minus: "-", times: "*", divide: "/" };
+
+    localStr = num1 + " " + funcName[opr] + " " + num2;
+    displayLastCalc.textContent = localStr;
+  }
 }
 
 function numClickHandler(e) {
@@ -99,6 +116,7 @@ function submitNumber(num) {
 function backToDefault() {
   enableBtn();
   clearDisplay();
+  displayLastCalcFunc("", "", "", true);
   oprFlag = false;
   opr = "";
   num1 = undefined;
