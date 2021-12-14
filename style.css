@@ -18,8 +18,14 @@ body {
   align-items: center;
 }
 .pad-container {
+  box-sizing: content-box;
+  padding: 20px;
   width: 330px;
   height: 500px;
+  background-color: #393a3f;
+  border: 2px solid black;
+  border-radius: 20px;
+
   display: grid;
   grid-template-areas:
     "display display"
@@ -27,7 +33,6 @@ body {
     "num opr";
   grid-template-rows: 2fr 1fr 4fr;
   grid-template-columns: 3fr 1fr;
-  gap: 5px;
 }
 
 /* display block */
@@ -39,6 +44,7 @@ body {
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 20px;
+  border: 2px solid black;
 }
 
 .last-operation {
@@ -59,6 +65,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 5px;
+  margin-bottom: 5px;
 }
 
 /* num pads*/
@@ -75,6 +82,7 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   gap: 5px;
+  margin-left: 5px;
 }
 
 /* btn style */
@@ -83,6 +91,7 @@ body {
   height: 100%;
   font-size: 32px;
   font-weight: 600;
+  border: 2px solid black;
 }
 
 .num-btn {
