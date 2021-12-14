@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "digital number";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Digital Numbers Regular"),
+    url("DigitalNumbers-Regular.woff") format("woff");
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -10,61 +18,86 @@ body {
   align-items: center;
 }
 .pad-container {
+  width: 330px;
+  height: 500px;
   display: grid;
   grid-template-areas:
-    "display display display display"
-    "misc misc misc misc"
-    "num num num opr"
-    "num num num opr"
-    "num num num opr"
-    "num num num opr";
-
-  grid-template-rows: 2fr repeat(5, 1fr);
-  grid-template-columns: repeat(4, 1fr);
+    "display display"
+    "misc opr"
+    "num opr";
+  grid-template-rows: 2fr 1fr 4fr;
+  grid-template-columns: 3fr 1fr;
+  gap: 5px;
 }
 
+/* display block */
 .display-container {
   grid-area: display;
   text-align: right;
   display: grid;
   grid-template-rows: 1fr 2fr;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 
 .last-operation {
-  background-color: #eee;
+  font-family: "digital number";
+  background-color: #e6f1f3;
   font-size: 32px;
 }
 
 .display {
-  background-color: #eee;
+  font-family: "digital number";
+  background-color: #e6f1f3;
   font-size: 50px;
 }
 
+/* misc pads */
 .misc-pad {
   grid-area: misc;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
 }
 
-.operator-pad {
-  grid-area: opr;
-  display: grid;
-  grid-template-columns: 1fr;
-}
-
+/* num pads*/
 .num-pad {
   grid-area: num;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
 }
 
-.num0 {
-  grid-column: span 2;
+/* operator pads */
+.operator-pad {
+  grid-area: opr;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5px;
 }
 
+/* btn style */
 .btn {
   width: 100%;
-  height: 50px;
+  height: 100%;
   font-size: 32px;
   font-weight: 600;
+}
+
+.num-btn {
+  background-color: #8d847f;
+  color: antiquewhite;
+  border-radius: 10%;
+}
+
+.operator-pad .btn,
+.misc-pad .btn {
+  background-color: #1d2025;
+  color: antiquewhite;
+  border-radius: 10%;
+}
+
+#clear-btn {
+  background-color: #d14d0c;
 }

@@ -2,10 +2,12 @@
 const numBtns = document.querySelectorAll(".num-btn");
 const oprBtns = document.querySelectorAll(".opr-btn");
 
-const display = document.querySelector(".display");
 const clrBtn = document.querySelector(".clear-btn");
 const equalBtn = document.querySelector(".equals-btn");
 const rmvLastBtn = document.querySelector(".rmv-last-btn");
+const plusMinusBtn = document.querySelector(".plus-minus-sign");
+
+const display = document.querySelector(".display");
 const displayLastCalc = document.querySelector(".last-operation");
 
 let displayStr = "";
@@ -24,11 +26,21 @@ oprBtns.forEach((btn) => btn.addEventListener("click", oprClickHandler));
 equalBtn.addEventListener("click", equalBtnEvent);
 clrBtn.addEventListener("click", backToDefault);
 rmvLastBtn.addEventListener("click", removeLast);
+plusMinusBtn.addEventListener("click", plusMinusHandler);
 
 window.addEventListener("keydown", keydownHandler);
 // FUNCTION
 
 // event handler
+
+function plusMinusHandler() {
+  if (displayStr[0] === "-") {
+    displayStr = displayStr.slice(1);
+  } else {
+    displayStr = "-" + displayStr;
+  }
+  display.textContent = displayStr;
+}
 
 function keydownHandler(e) {
   const keyPressed = e.key;
