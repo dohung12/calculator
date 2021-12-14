@@ -180,8 +180,12 @@ function times(num1, num2) {
 function divide(num1, num2) {
   if (num2 === 0) {
     disableBtn();
+    displayLastCalc.textContent = "Press C";
     return "#ERR";
   } else if (num2 !== 0) {
+    if (num1 % num2 !== 2) {
+      return (num1 / num2).toFixed(3);
+    }
     return num1 / num2;
   }
 }
